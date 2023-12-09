@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/09 21:21:07 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/09 22:02:51 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <mlx.h>
 # include <math.h>
 # include <stdio.h>
+# include <stdlib.h>
 
 # define HEIGHT 720
 # define WIDTH 1280
@@ -57,5 +58,7 @@ int		close(int keycode, t_vars *vars);
 void	draw_line(t_point start, t_point end, t_data *data);
 t_point init_point(int x, int y, int color);
 int	on_keypress(int keycode, t_vars *vars);
+t_map	*init_map(void);
+void	draw_map(t_map *map, t_data *img);
 
 #endif

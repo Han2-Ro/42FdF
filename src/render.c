@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/09 21:35:02 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/09 22:02:07 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,37 @@ void	draw_line(t_point start, t_point end, t_data *img)
 		line_across_y(start, d_x, d_y, img);
 }
 
-void	draw_map(t_map map, t_data img)
+int	conv_cosy(double nbr)
 {
-	
+	return ((nbr + 1) * 150);
+}
+
+void	draw_map(t_map *map, t_data *img)
+{
+	int		x;
+	int		y;
+	t_point	p1;
+	t_point	p2;
+
+	y = 0;
+	while (y < map->y_size)
+	{
+		x = 0;
+		while (x < map->x_size)
+		{
+			p1 = init_point(conv_cosy(x), conv_cosy(y), 0x00FF00FF);
+			if (x + 1 < map->x_size)
+			{
+				p2 = init_point(conv_cosy(x + 1), conv_cosy(y), 0x00FF00FF);
+				draw_line(p1, p2, img);
+			}
+			if (y + 1 < map->y_size)
+			{
+				p2 = init_point(conv_cosy(x), conv_cosy(y + 1), 0x00FF00FF);
+				draw_line(p1, p2, img);
+			}
+			x++;
+		}
+		y++;
+	}
 }
