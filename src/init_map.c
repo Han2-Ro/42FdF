@@ -1,31 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 16:38:04 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/09 21:08:29 by hrother          ###   ########.fr       */
+/*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
+/*   Updated: 2023/12/09 21:28:42 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	put_pixel(t_data *data, t_point pixel)
+t_map	*init_map(void)
 {
-	char	*dst;
+	t_map	*map;
+	int		i;
+	int		j;
 
-	dst = data->addr + (pixel.y * data->line_length + pixel.x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = pixel.color;
-}
-
-t_point init_point(int x, int y, int color)
-{
-	t_point point;
-	
-	point.x = x;
-	point.y = y;
-	point.color = color;
-	return (point);
+	map = malloc(sizeof(t_map));
+	map->x_size = 4;
+	map->y_size = 4;
+	map->arr = malloc(map->x_size * sizeof(int *));
+	i = 0;
+	while (i < map->x_size)
+	{
+		map->arr[i] = malloc(map->y_size * sizeof(int));
+		j = 0;
+		while (j < map->y_size)
+		{
+			map->arr[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+	return (map);
 }
