@@ -6,7 +6,7 @@
 #    By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 22:50:02 by hrother           #+#    #+#              #
-#    Updated: 2023/12/09 21:20:40 by hrother          ###   ########.fr        #
+#    Updated: 2023/12/09 22:05:31 by hrother          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	make clean -C ./libft
+	#make clean -C ./libft
 	rm -fr $(OBJ_DIR)
 
 fclean: clean
-	make fclean -C ./libft
+	#make fclean -C ./libft
 	rm $(NAME)
 
 re: fclean all
