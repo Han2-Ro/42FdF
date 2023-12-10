@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:25:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 21:54:23 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 22:31:56 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_point	rotate_z(t_point point, float angle)
 {
-	t_point res;
+	t_point	res;
 
 	res.color = point.color;
 	res.x = point.x * cos(angle) - point.y * sin(angle);
@@ -25,7 +25,7 @@ t_point	rotate_z(t_point point, float angle)
 
 t_point	rotate_x(t_point point, float angle)
 {
-	t_point res;
+	t_point	res;
 
 	res.color = point.color;
 	res.x = point.x;
@@ -42,8 +42,16 @@ t_point	*scale(t_point *point, float factor)
 	return (point);
 }
 
+t_point	*translate(t_point *point, float x, float y)
+{
+	point->x += x;
+	point->y += y;
+	return (point);
+}
+
 t_point	apply_pers(t_point point, t_perspective pers)
 {
 	scale(&point, pers.zoom);
+	translate(&point, pers.x_trans, pers.y_trans);
 	return (rotate_x(rotate_z(point, pers.z_rot), pers.x_rot));
 }

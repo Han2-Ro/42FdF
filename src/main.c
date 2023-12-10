@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 20:00:23 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 22:22:56 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int argc, char **argv)
 	vars.pers.zoom = 1;
 	vars.pers.z_rot = 0;
 	vars.pers.x_rot = 0;
+	vars.pers.x_trans = 0;
+	vars.pers.y_trans = 0;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Hello world!");
 	vars.map = map;

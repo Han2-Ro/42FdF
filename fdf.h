@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 21:24:11 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 22:22:29 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_point
 
 typedef struct s_perspective
 {
+	float	x_trans;
+	float	y_trans;
 	float	z_rot;
 	float	x_rot;
 	float	zoom;

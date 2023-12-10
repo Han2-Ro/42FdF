@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:46:59 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 22:07:09 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 22:30:17 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ int	on_keypress(int keycode, t_vars *vars)
 		vars->pers.zoom *= 1.1f;
 	else if (keycode == 65507)
 		vars->pers.zoom /= 1.1f;
+	else if (keycode == 119)
+		vars->pers.y_trans -= 1;
+	else if (keycode == 115)
+		vars->pers.y_trans += 1;
+	else if (keycode == 97)
+		vars->pers.x_trans -= 1;
+	else if (keycode == 100)
+		vars->pers.x_trans += 1;
 	img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	draw_map(vars->map, &img, vars->pers);
