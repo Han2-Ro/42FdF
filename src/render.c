@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 17:39:48 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 17:45:43 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,17 +89,17 @@ void	draw_map(t_map *map, t_data *img, t_perspective pers)
 		x = 0;
 		while (x < map->x_size)
 		{
-			p1 = init_point(x, y, map->arr[x][y], 0x00FF00FF);
+			p1 = init_point(x, y, map->arr[x][y], 0x0000FFFF);
 			p1 = conv_cosy(apply_pers(p1, pers));
 			if (x + 1 < map->x_size)
 			{
-				p2 = init_point(x + 1, y, map->arr[x + 1][y], 0x00FF00FF);
+				p2 = init_point(x + 1, y, map->arr[x + 1][y], 0x0000FFFF);
 				p2 = conv_cosy(apply_pers(p2, pers));
 				draw_line(p1, p2, img);
 			}
 			if (y + 1 < map->y_size)
 			{
-				p2 = init_point(x, y + 1, map->arr[x][y + 1], 0x00FF00FF);
+				p2 = init_point(x, y + 1, map->arr[x][y + 1], 0x0000FFFF);
 				p2 = conv_cosy(apply_pers(p2, pers));
 				draw_line(p1, p2, img);
 			}

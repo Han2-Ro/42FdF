@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:38:04 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 17:33:46 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 19:49:37 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ t_point init_point(float x, float y, float z, int color)
 	point.z = z;
 	point.color = color;
 	return (point);
+}
+
+void	free_strs(char **arr)
+{
+	int	i;
+
+	if (arr == NULL)
+		return ;
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
 
 void	print_map(t_map map)

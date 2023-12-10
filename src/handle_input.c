@@ -6,18 +6,11 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:46:59 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 16:49:31 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 18:17:29 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-int	close(int keycode, t_vars *vars)
-{
-	(void) keycode;
-	mlx_destroy_window(vars->mlx, vars->win);
-	return (0);
-}
 
 int	on_keypress(int keycode, t_vars *vars)
 {

@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 17:35:27 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 20:00:23 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,18 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
+	if (argc != 2)
+	{
+		ft_printf("usage: %s <filename>\n", argv[0]);
+		return (1);
+	}
+	map = init_map(argv[1]);
+	print_map(*map);
 	vars.pers.zoom = 1;
 	vars.pers.z_rot = 0;
 	vars.pers.x_rot = 0;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Hello world!");
-	map = init_map();
-	print_map(*map);
 	vars.map = map;
 	//mlx_hook(vars.win, 2, 1L << 0, close, &vars);
 	//mlx_hook(vars.win, 17, 1L << 2, close, &vars);
