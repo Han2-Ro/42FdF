@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:38:04 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 19:49:37 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 21:26:15 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	put_pixel(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-t_point init_point(float x, float y, float z, int color)
+t_point	init_point(float x, float y, float z, int color)
 {
-	t_point point;
-	
+	t_point	point;
+
 	point.x = x;
 	point.y = y;
 	point.z = z;
@@ -48,6 +48,25 @@ void	free_strs(char **arr)
 	free(arr);
 }
 
+int	count_w(char const *s, char c)
+{
+	int	i;
+	int	wcount;
+
+	i = 0;
+	wcount = 0;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i])
+			wcount++;
+		while (s[i] != c && s[i])
+			i++;
+	}
+	return (wcount);
+}
+
 void	print_map(t_map map)
 {
 	int	x;
@@ -59,7 +78,7 @@ void	print_map(t_map map)
 		x = 0;
 		while (x < map.x_size)
 		{
-			printf("%f ", map.arr[x][y]);
+			printf("%f ", map.arr[y][x]);
 			x++;
 		}
 		printf("\n");

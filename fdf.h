@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 19:49:50 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 21:24:11 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void	draw_map(t_map *map, t_data *img, t_perspective pers);
 t_point	apply_pers(t_point point, t_perspective pers);
 void	print_map(t_map map);
 void	free_strs(char **arr);
+int		count_w(char const *s, char c);
 
 #endif
