@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 22:05:17 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/11 00:34:52 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,10 @@ void	draw_line(t_point start, t_point end, t_data *img)
 
 t_point	conv_cosy(t_point point)
 {
-	point.x = (point.x + 3) * 100;
-	point.y = (point.y + 3) * 100;
-	point.z = (point.z + 3) * 100;
+	point.x = point.x * 20 + WIDTH / 2;
+	point.y = point.y * 20 + HEIGHT / 2;
+	point.z = point.z * 20 + HEIGHT / 2;
+	//point.z = (point.z + 3) * 100;
 	return (point);
 }
 

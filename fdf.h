@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 22:22:29 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/11 00:04:51 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
+# include "minilibx-linux/mlx.h"
 # include <math.h>
 # include <fcntl.h>
 # include "libft/libft.h"
@@ -66,7 +66,7 @@ typedef struct s_vars
 
 void	put_pixel(t_data *data, int x, int y, int color);
 void	draw_line(t_point start, t_point end, t_data *data);
-t_point init_point(float x, float y, float z, int color);
+t_point	init_point(float x, float y, float z, int color);
 int		on_keypress(int keycode, t_vars *vars);
 t_map	*init_map(char *filename);
 void	draw_map(t_map *map, t_data *img, t_perspective pers);

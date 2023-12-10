@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 21:46:21 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/11 00:10:27 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ t_map	*init_map(char *filename)
 
 	str = read_file(filename);
 	printf("%s\n\n", str);
+	if (!str)
+		return (NULL);
 	map = malloc(sizeof(t_map));
 	parse_map(map, str);
 	free(str);
