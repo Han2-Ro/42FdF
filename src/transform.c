@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:25:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 17:00:09 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 21:54:23 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,16 @@ t_point	rotate_x(t_point point, float angle)
 	return (res);
 }
 
+t_point	*scale(t_point *point, float factor)
+{
+	point->x *= factor;
+	point->y *= factor;
+	point->z *= factor;
+	return (point);
+}
+
 t_point	apply_pers(t_point point, t_perspective pers)
 {
+	scale(&point, pers.zoom);
 	return (rotate_x(rotate_z(point, pers.z_rot), pers.x_rot));
 }

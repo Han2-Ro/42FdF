@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 21:28:38 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 22:05:17 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	draw_line(t_point start, t_point end, t_data *img)
 
 	d_x = end.x - start.x;
 	d_y = end.y - start.y;
+	if (d_x == 0 && d_y == 0)
+		return ;
 	if (fabs((double) d_x) > fabs((double) d_y))
 		line_across_x(start, d_x, d_y, img);
 	else
