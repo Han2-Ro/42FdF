@@ -6,7 +6,7 @@
 #    By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 22:50:02 by hrother           #+#    #+#              #
-#    Updated: 2023/12/09 22:05:31 by hrother          ###   ########.fr        #
+#    Updated: 2023/12/10 14:35:05 by hrother          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,10 @@ CC = cc
 CFLAGS = -g -Wall -Wextra -Werror
 SRC_DIR = src
 OBJ_DIR = objs
-SRCS = main.c render.c utils.c handle_input.c init_map.c
+SRCS = main.c render.c utils.c handle_input.c init_map.c transform.c
 OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 NAME = fdf
+RM = rm -fr
 
 all: $(NAME) $(NAME_BONUS)
 
@@ -30,11 +31,11 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	#make clean -C ./libft
-	rm -fr $(OBJ_DIR)
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
 	#make fclean -C ./libft
-	rm $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 

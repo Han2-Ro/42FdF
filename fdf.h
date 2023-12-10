@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/09 22:02:51 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 17:35:17 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define HEIGHT 720
-# define WIDTH 1280
+# define HEIGHT 900
+# define WIDTH 1000
 
 typedef struct s_data
 {
@@ -28,37 +28,46 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
-
-typedef struct	s_vars
-{
-	void	*mlx;
-	void	*win;
-	int		x;
-	int		y;
-}				t_vars;
+}	t_data;
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	color;
+	float	x;
+	float	y;
+	float	z;
+	int		color;
 }	t_point;
+
+typedef struct s_perspective
+{
+	float	z_rot;
+	float	x_rot;
+	float	zoom;
+}	t_perspective;
 
 typedef struct s_map
 {
-	double	**arr;
+	float	**arr;
 	int		x_size;
 	int		y_size;
 }	t_map;
 
+typedef struct s_vars
+{
+	void			*mlx;
+	void			*win;
+	t_map			*map;
+	t_perspective	pers;
+}	t_vars;
 
-void	put_pixel(t_data *data, t_point pixel);
+void	put_pixel(t_data *data, int x, int y, int color);
 int		close(int keycode, t_vars *vars);
 void	draw_line(t_point start, t_point end, t_data *data);
-t_point init_point(int x, int y, int color);
-int	on_keypress(int keycode, t_vars *vars);
+t_point init_point(float x, float y, float z, int color);
+int		on_keypress(int keycode, t_vars *vars);
 t_map	*init_map(void);
-void	draw_map(t_map *map, t_data *img);
+void	draw_map(t_map *map, t_data *img, t_perspective pers);
+t_point	apply_pers(t_point point, t_perspective pers);
+void	print_map(t_map map);
 
 #endif

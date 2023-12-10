@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:46:59 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/09 21:07:45 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/10 16:49:31 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,20 @@ int	close(int keycode, t_vars *vars)
 
 int	on_keypress(int keycode, t_vars *vars)
 {
-	t_data img;
+	t_data	img;
 
 	printf("Key pressed: %i\n", keycode);
 	if (keycode == 119)
-		vars->y -= 20;
+		vars->pers.x_rot -= .5f;
 	else if (keycode == 115)
-		vars->y += 20;
+		vars->pers.x_rot += .5f;
 	else if (keycode == 97)
-		vars->x -= 20;
+		vars->pers.z_rot -= .5f;
 	else if (keycode == 100)
-		vars->x += 20;
+		vars->pers.z_rot += .5f;
 	img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	t_point p1 = init_point(300, 300, 0x00FF0000);
-	t_point p2 = init_point(vars->x, vars->y, 0x00FF0000);
-	draw_line(p1, p2, &img);
+	draw_map(vars->map, &img, vars->pers);
 	mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
 	return (0);
 }
