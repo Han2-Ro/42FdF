@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/11 00:12:30 by hannes           ###   ########.fr       */
+/*   Updated: 2023/12/11 18:47:21 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
-	t_data	img;
+	t_img	img;
 	t_map	*map;
 
 	(void)argc;
@@ -37,11 +37,10 @@ int	main(int argc, char **argv)
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Hello world!");
 	vars.map = map;
-	//mlx_hook(vars.win, 2, 1L << 0, close, &vars);
-	//mlx_hook(vars.win, 17, 1L << 2, close, &vars);
 	mlx_key_hook(vars.win, on_keypress, &vars);
 	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	vars.img = &img;
 	draw_map(map, &img, vars.pers);
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_loop(vars.mlx);

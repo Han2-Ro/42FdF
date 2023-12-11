@@ -6,25 +6,50 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:46:59 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 22:30:17 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/11 22:13:04 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
+void	free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->y_size)
+	{
+		free(map->height[i]);
+		i++;
+	}
+	free(map->height);
+	free(map);
+}
+
+int	close_win(int keycode, t_vars *vars)
+{
+	(void) keycode;
+	free_map(vars->map);
+	mlx_destroy_image(vars->mlx, vars->img->img);
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	exit(0);
+	return (0);
+}
+
 int	on_keypress(int keycode, t_vars *vars)
 {
-	t_data	img;
-
 	printf("Key pressed: %i\n", keycode);
-	if (keycode == 65362)
-		vars->pers.x_rot -= .5f;
-	else if (keycode == 65364)
+	if (keycode == 65307)
+		return (close_win(keycode, vars));
+	else if (keycode == 65362)
 		vars->pers.x_rot += .5f;
+	else if (keycode == 65364)
+		vars->pers.x_rot -= .5f;
 	else if (keycode == 65361)
-		vars->pers.z_rot -= .5f;
-	else if (keycode == 65363)
 		vars->pers.z_rot += .5f;
+	else if (keycode == 65363)
+		vars->pers.z_rot -= .5f;
 	else if (keycode == 65505)
 		vars->pers.zoom *= 1.1f;
 	else if (keycode == 65507)
@@ -37,9 +62,8 @@ int	on_keypress(int keycode, t_vars *vars)
 		vars->pers.x_trans -= 1;
 	else if (keycode == 100)
 		vars->pers.x_trans += 1;
-	img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-	draw_map(vars->map, &img, vars->pers);
-	mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
+	ft_bzero(vars->img->addr, HEIGHT * vars->img->line_length);
+	draw_map(vars->map, vars->img, vars->pers);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
 	return (0);
 }

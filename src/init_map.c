@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/11 00:10:27 by hannes           ###   ########.fr       */
+/*   Updated: 2023/12/11 22:11:21 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ t_map	*parse_map(t_map *map, char	*str)
 
 	map->y_size = count_w(str, '\n');
 	lines = ft_split(str, '\n');
-	map->arr = malloc(map->y_size * sizeof (int *));
-	if (!lines || !map->arr)
+	map->height = malloc(map->y_size * sizeof (int *));
+	if (!lines || !map->height)
 		return (NULL);
 	map->x_size = count_w(lines[0], ' ');
 	y = 0;
 	while (lines[y] && y < map->y_size)
 	{
-		map->arr[y] = parse_row(lines[y], map->x_size);
+		map->height[y] = parse_row(lines[y], map->x_size);
 		y++;
 	}
 	free_strs(lines);

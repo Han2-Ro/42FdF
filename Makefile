@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+         #
+#    By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 22:50:02 by hrother           #+#    #+#              #
-#    Updated: 2023/12/11 00:26:13 by hannes           ###   ########.fr        #
+#    Updated: 2023/12/11 22:12:38 by hrother          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g #-Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 SRC_DIR = src
 OBJ_DIR = objs
 SRCS = main.c render.c utils.c handle_input.c init_map.c transform.c

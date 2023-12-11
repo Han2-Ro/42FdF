@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/11 00:34:52 by hannes           ###   ########.fr       */
+/*   Updated: 2023/12/11 21:46:24 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	line_across_x(t_point start, int d_x, int d_y, t_data *data)
+void	line_across_x(t_point start, int d_x, int d_y, t_img *data)
 {
 	int		direction;
 	int		i;
@@ -33,7 +33,7 @@ void	line_across_x(t_point start, int d_x, int d_y, t_data *data)
 	}
 }
 
-void	line_across_y(t_point start, int d_x, int d_y, t_data *data)
+void	line_across_y(t_point start, int d_x, int d_y, t_img *data)
 {
 	//TODO: consider using bresenham's line drawing algorithm
 	int		direction;
@@ -55,7 +55,7 @@ void	line_across_y(t_point start, int d_x, int d_y, t_data *data)
 	}
 }
 
-void	draw_line(t_point start, t_point end, t_data *img)
+void	draw_line(t_point start, t_point end, t_img *img)
 {
 	int		d_x;
 	int		d_y;
@@ -79,7 +79,7 @@ t_point	conv_cosy(t_point point)
 	return (point);
 }
 
-void	draw_map(t_map *map, t_data *img, t_perspective pers)
+void	draw_map(t_map *map, t_img *img, t_perspective pers)
 {
 	int		x;
 	int		y;
@@ -92,17 +92,17 @@ void	draw_map(t_map *map, t_data *img, t_perspective pers)
 		x = 0;
 		while (x < map->x_size)
 		{
-			p1 = init_point(x, y, map->arr[y][x], 0x0000FFFF);
+			p1 = init_point(x, y, map->height[y][x], 0x0000FFFF);
 			p1 = conv_cosy(apply_pers(p1, pers));
 			if (x + 1 < map->x_size)
 			{
-				p2 = init_point(x + 1, y, map->arr[y][x + 1], 0x0000FFFF);
+				p2 = init_point(x + 1, y, map->height[y][x + 1], 0x0000FFFF);
 				p2 = conv_cosy(apply_pers(p2, pers));
 				draw_line(p1, p2, img);
 			}
 			if (y + 1 < map->y_size)
 			{
-				p2 = init_point(x, y + 1, map->arr[y + 1][x], 0x0000FFFF);
+				p2 = init_point(x, y + 1, map->height[y + 1][x], 0x0000FFFF);
 				p2 = conv_cosy(apply_pers(p2, pers));
 				draw_line(p1, p2, img);
 			}

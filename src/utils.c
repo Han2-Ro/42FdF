@@ -6,17 +6,17 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:38:04 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/10 21:26:15 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/11 22:12:34 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	put_pixel(t_data *data, int x, int y, int color)
+void	put_pixel(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (y > HEIGHT || x > WIDTH || y < 0 || x < 0)
+	if (y >= HEIGHT || x >= WIDTH || y < 0 || x < 0)
 		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
@@ -78,11 +78,36 @@ void	print_map(t_map map)
 		x = 0;
 		while (x < map.x_size)
 		{
-			printf("%f ", map.arr[y][x]);
+			printf("%f ", map.height[y][x]);
 			x++;
 		}
 		printf("\n");
 		y++;
 	}
 	printf("\n");
+}
+
+int	ft_atoi_base(char *str, const char *base)
+{
+	int	result;
+	int	digit;
+	int	radix;
+
+	radix = ft_strlen(base);
+	while (*str == 32 || (9 <= *str && *str <= 13))
+		str++;
+	result = 0;
+	while (*str)
+	{
+		if (!ft_strchr(base, *str))
+		{
+			break ;
+		}
+		digit = 0;
+		while(base[digit] && base[digit] != *str)
+			digit++;
+		result = result * 10 - digit;
+		str++;
+	}
+	return (-result);
 }
