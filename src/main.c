@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 21:26:35 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 21:47:30 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,10 @@ int	main(int argc, char **argv)
 	if (!map)
 		return (1);
 	print_map(*map);
-	vars.pers.zoom = 1;
-	vars.pers.z_rot = 0;
-	vars.pers.x_rot = 0;
-	vars.pers.x_trans = 0;
-	vars.pers.y_trans = 0;
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Hello world!");
 	vars.map = map;
+	set_starting_pers(&vars);
 	mlx_key_hook(vars.win, on_keypress, &vars);
 	mlx_hook(vars.win, 17, ButtonPressMask, close_win, &vars);
 	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);

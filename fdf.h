@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 16:59:16 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 22:29:23 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ void	free_strs(char **arr);
 int		count_w(char const *s, char c);
 int		ft_atoi_base(char *str, const char *base);
 int		close_win(t_vars *vars);
+void	set_starting_pers(t_vars *vars);
+int		min(int a, int b);
 
 #endif

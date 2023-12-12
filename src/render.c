@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 21:28:33 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 22:07:38 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,9 @@ void	draw_line(t_point start, t_point end, t_img *img)
 
 t_point	conv_cosy(t_point point)
 {
-	point.x = point.x * 20 + WIDTH / 2;
-	point.y = point.y * 20 + HEIGHT / 2;
-	point.z = point.z * 20 + HEIGHT / 2;
-	//point.z = (point.z + 3) * 100;
+	point.x += WIDTH / 2;
+	point.y += HEIGHT / 2;
+	point.z += HEIGHT / 2;
 	return (point);
 }
 
