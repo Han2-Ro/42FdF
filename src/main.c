@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 21:47:30 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 22:35:23 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	map = init_map(argv[1]);
 	if (!map)
 		return (1);
-	print_map(*map);
+	//print_map(*map);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Hello world!");
 	vars.map = map;

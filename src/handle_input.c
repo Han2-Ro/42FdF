@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:46:59 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 16:57:57 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 22:36:28 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ void	free_map(t_map *map)
 		i++;
 	}
 	free(map->height);
+	i = 0;
+	while (i < map->y_size)
+	{
+		free(map->color[i]);
+		i++;
+	}
+	free(map->color);
 	free(map);
 }
 
