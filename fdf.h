@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 22:29:23 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 23:16:46 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define WIDTH 1000
 # define HEX "0123456789abcdef"
 # define ROT_ANGLE 0.392699082f
+# define BUFFER_SIZE 5000
 
 typedef struct t_img
 {

@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 18:50:01 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 23:10:14 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*str_attach(char **s1, char *s2)
 char	*read_file(char *filename)
 {
 	char	*str;
-	char	buffer[16];
+	char	buffer[BUFFER_SIZE];
 	int		bytes_read;
 	int		fd;
 
@@ -39,8 +39,8 @@ char	*read_file(char *filename)
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
-		ft_bzero(buffer, 16);
-		bytes_read = read(fd, buffer, 15);
+		ft_bzero(buffer, BUFFER_SIZE);
+		bytes_read = read(fd, buffer, BUFFER_SIZE - 1);
 		str_attach(&str, buffer);
 	}
 	return (str);
