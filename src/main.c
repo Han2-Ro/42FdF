@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 17:34:24 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 21:26:35 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	map = init_map(argv[1]);
 	if (!map)
 		return (1);
-	//print_map(*map);
+	print_map(*map);
 	vars.pers.zoom = 1;
 	vars.pers.z_rot = 0;
 	vars.pers.x_rot = 0;

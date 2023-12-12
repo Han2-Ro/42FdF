@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:38:04 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 17:40:36 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 19:26:58 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,19 @@ void	print_map(t_map map)
 		y++;
 	}
 	printf("\n");
+	y = 0;
+	while (y < map.y_size)
+	{
+		x = 0;
+		while (x < map.x_size)
+		{
+			printf("%x ", map.color[y][x]);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+	printf("\n");
 }
 
 int	ft_atoi_base(char *str, const char *base)
@@ -106,7 +119,7 @@ int	ft_atoi_base(char *str, const char *base)
 		digit = 0;
 		while (base[digit] && base[digit] != *str)
 			digit++;
-		result = result * 10 - digit;
+		result = result * radix - digit;
 		str++;
 	}
 	return (-result);
