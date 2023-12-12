@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 15:59:21 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 16:59:16 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define HEIGHT 900
 # define WIDTH 1000
 # define HEX "0123456789abcdef"
+# define ROT_ANGLE 0.392699082f
 
 typedef struct t_img
 {
@@ -80,6 +81,6 @@ void	print_map(t_map map);
 void	free_strs(char **arr);
 int		count_w(char const *s, char c);
 int		ft_atoi_base(char *str, const char *base);
-int	close_win(int keycode, t_vars *vars);
+int		close_win(t_vars *vars);
 
 #endif

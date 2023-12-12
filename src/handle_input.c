@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:46:59 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 15:55:31 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 16:57:57 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ void	free_map(t_map *map)
 	free(map);
 }
 
-int	close_win(int keycode, t_vars *vars)
+int	close_win(t_vars *vars)
 {
-	(void) keycode;
 	free_map(vars->map);
 	mlx_destroy_image(vars->mlx, vars->img->img);
 	mlx_destroy_window(vars->mlx, vars->win);
@@ -42,15 +41,15 @@ int	on_keypress(int keycode, t_vars *vars)
 {
 	printf("Key pressed: %i\n", keycode);
 	if (keycode == 65307)
-		return (close_win(keycode, vars));
+		return (close_win(vars));
 	else if (keycode == 65362)
-		vars->pers.x_rot += .5f;
+		vars->pers.x_rot += ROT_ANGLE;
 	else if (keycode == 65364)
-		vars->pers.x_rot -= .5f;
+		vars->pers.x_rot -= ROT_ANGLE;
 	else if (keycode == 65361)
-		vars->pers.z_rot += .5f;
+		vars->pers.z_rot += ROT_ANGLE;
 	else if (keycode == 65363)
-		vars->pers.z_rot -= .5f;
+		vars->pers.z_rot -= ROT_ANGLE;
 	else if (keycode == 65505)
 		vars->pers.zoom *= 1.1f;
 	else if (keycode == 65507)

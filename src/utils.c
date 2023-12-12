@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:38:04 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/11 22:12:34 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 17:40:36 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	count_w(char const *s, char c)
 
 	i = 0;
 	wcount = 0;
-	while (s[i])
+	while (s && s[i])
 	{
 		while (s[i] == c)
 			i++;
@@ -104,7 +104,7 @@ int	ft_atoi_base(char *str, const char *base)
 			break ;
 		}
 		digit = 0;
-		while(base[digit] && base[digit] != *str)
+		while (base[digit] && base[digit] != *str)
 			digit++;
 		result = result * 10 - digit;
 		str++;

@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/11 22:11:21 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 17:41:06 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,12 @@ t_map	*init_map(char *filename)
 	char	*str;
 
 	str = read_file(filename);
-	printf("%s\n\n", str);
+	//printf("%s\n\n", str);
 	if (!str)
 		return (NULL);
 	map = malloc(sizeof(t_map));
-	parse_map(map, str);
+	if (map)
+		parse_map(map, str);
 	free(str);
 	return (map);
 }
