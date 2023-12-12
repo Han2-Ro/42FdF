@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/11 22:12:14 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/12 15:59:21 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <math.h>
 # include <fcntl.h>
 # include "libft/libft.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <stdio.h>
 # include <stdlib.h>
 
@@ -78,5 +80,6 @@ void	print_map(t_map map);
 void	free_strs(char **arr);
 int		count_w(char const *s, char c);
 int		ft_atoi_base(char *str, const char *base);
+int	close_win(int keycode, t_vars *vars);
 
 #endif
