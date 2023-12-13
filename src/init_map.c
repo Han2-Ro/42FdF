@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 23:10:14 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/13 15:02:49 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,14 @@ t_map	*init_map(char *filename)
 {
 	t_map	*map;
 	char	*str;
+	int		len;
 
+	len = ft_strlen(filename);
+	if (len <= 4 || filename[len - 4] != '.'
+		|| filename[len - 3] != 'f'
+		|| filename[len - 2] != 'd'
+		|| filename[len - 1] != 'f')
+		return (ft_putendl_fd("File extension must be .fdf", 2), NULL);
 	str = read_file(filename);
 	//printf("%s\n\n", str);
 	if (!str)
