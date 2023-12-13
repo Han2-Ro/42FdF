@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/13 15:02:49 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/13 15:06:31 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*read_file(char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (NULL);
+		return (ft_putendl_fd("could not open file", 2), NULL);
 	str = malloc(sizeof(char));
 	if (!str)
 		return (NULL);
