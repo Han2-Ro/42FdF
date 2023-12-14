@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/13 15:06:31 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 17:46:03 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,13 @@ int	fill_row(char	*line, int size, t_map *map, int y)
 			map->color[y][x] = 0x00FFFFFF;
 		x++;
 	}
+	while (x < size)
+	{
+		map->height[y][x] = 0;
+		map->color[y][x] = 0x00FFFFFF;
+		x++;
+	}
+	
 	free_strs(cells);
 	return (1);
 }
