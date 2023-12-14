@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/14 19:22:23 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 21:20:16 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,21 @@ typedef struct s_map
 	int		y_size;
 }	t_map;
 
+typedef struct s_key
+{
+	int		keycode;
+	int		pressed;
+	float	dif;
+	float	*val;
+}	t_key;
+
 typedef struct s_vars
 {
 	void			*mlx;
 	void			*win;
 	t_img			*img;
 	t_map			*map;
+	t_key			*keys;
 	t_perspective	pers;
 }	t_vars;
 
@@ -87,5 +96,11 @@ int		ft_atoi_base(char *str, const char *base);
 int		close_win(t_vars *vars);
 void	set_starting_pers(t_vars *vars);
 int		min(int a, int b);
+int		on_keypressed(int keycode, t_vars *vars);
+int		on_keyreleased(int keycode, t_vars *vars);
+int		on_loop(t_vars *vars);
+t_key	*init_keys(t_vars *vars);
+void	apply_all_keys(float deltatime, t_vars *vars);
+int		set_key(int keycode, int state, t_vars *vars);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 22:35:23 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 21:18:46 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ int	main(int argc, char **argv)
 	map = init_map(argv[1]);
 	if (!map)
 		return (1);
-	//print_map(*map);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WIDTH, HEIGHT, "Hello world!");
 	vars.map = map;
 	set_starting_pers(&vars);
-	mlx_key_hook(vars.win, on_keypress, &vars);
+	vars.keys = init_keys(&vars);
 	mlx_hook(vars.win, 17, ButtonPressMask, close_win, &vars);
+	mlx_hook(vars.win, 2, KeyPressMask, on_keypressed, &vars);
+	mlx_hook(vars.win, 3, KeyReleaseMask, on_keyreleased, &vars);
+	mlx_loop_hook(vars.mlx, on_loop, &vars);
 	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	vars.img = &img;

@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:46:59 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/14 20:03:40 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 21:09:26 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	close_win(t_vars *vars)
 	return (0);
 }
 
+/*
 int	on_keypress(int keycode, t_vars *vars)
 {
 	printf("Key pressed: %i\n", keycode);
@@ -80,3 +81,4 @@ int	on_keypress(int keycode, t_vars *vars)
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
 	return (0);
 }
+*/

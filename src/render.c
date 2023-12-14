@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/14 20:15:57 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 22:54:46 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	main(void)
 
 void	line_across_x(t_point start, t_point end, int d_x, int d_y, t_img *data)
 {
-	float		direction;
-	float		i;
+	float	direction;
+	float	i;
 	t_point	pixel;
 
 	pixel.color = start.color;
@@ -63,6 +63,7 @@ void	line_across_x(t_point start, t_point end, int d_x, int d_y, t_img *data)
 	{
 		pixel.x = start.x + i * direction;
 		pixel.y = start.y + i * d_y / (d_x * direction);
+		(void)end;
 		pixel.color = blend(start.color, end.color, (i + .0f) / (d_x * direction));
 		put_pixel(data, (int)pixel.x, (int)pixel.y,  pixel.color);
 		i++;
@@ -71,9 +72,8 @@ void	line_across_x(t_point start, t_point end, int d_x, int d_y, t_img *data)
 
 void	line_across_y(t_point start, t_point end, int d_x, int d_y, t_img *data)
 {
-	//TODO: consider using bresenham's line drawing algorithm
-	float		direction;
-	float		i;
+	float	direction;
+	float	i;
 	t_point	pixel;
 
 	pixel.color = start.color;
@@ -86,6 +86,7 @@ void	line_across_y(t_point start, t_point end, int d_x, int d_y, t_img *data)
 	{
 		pixel.y = start.y + i * direction;
 		pixel.x = start.x + i * d_x / (d_y * direction);
+		(void)end;
 		pixel.color = blend(start.color, end.color, i / (d_y * direction));
 		put_pixel(data, (int)pixel.x, (int)pixel.y, pixel.color);
 		i++;
