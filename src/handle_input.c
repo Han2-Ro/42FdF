@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 20:46:59 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 22:36:28 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 20:03:40 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,28 +47,34 @@ int	close_win(t_vars *vars)
 int	on_keypress(int keycode, t_vars *vars)
 {
 	printf("Key pressed: %i\n", keycode);
-	if (keycode == 65307)
+	if (keycode == XK_Escape)
 		return (close_win(vars));
-	else if (keycode == 65362)
+	else if (keycode == XK_Up)
 		vars->pers.x_rot += ROT_ANGLE;
-	else if (keycode == 65364)
+	else if (keycode == XK_Down)
 		vars->pers.x_rot -= ROT_ANGLE;
-	else if (keycode == 65361)
+	else if (keycode == XK_Left)
 		vars->pers.z_rot += ROT_ANGLE;
-	else if (keycode == 65363)
+	else if (keycode == XK_Right)
 		vars->pers.z_rot -= ROT_ANGLE;
-	else if (keycode == 65505)
+	else if (keycode == XK_Shift_L)
 		vars->pers.zoom *= 1.1f;
-	else if (keycode == 65507)
+	else if (keycode == XK_Control_L)
 		vars->pers.zoom /= 1.1f;
-	else if (keycode == 119)
+	else if (keycode == XK_q)
 		vars->pers.y_trans -= 1;
-	else if (keycode == 115)
+	else if (keycode == XK_e)
 		vars->pers.y_trans += 1;
-	else if (keycode == 97)
+	else if (keycode == XK_a)
 		vars->pers.x_trans -= 1;
-	else if (keycode == 100)
+	else if (keycode == XK_d)
 		vars->pers.x_trans += 1;
+	else if (keycode == XK_w)
+		vars->pers.z_trans += 1;
+	else if (keycode == XK_s)
+		vars->pers.z_trans -= 1;
+	else if (keycode == XK_space)
+		vars->pers.isoemtric = !vars->pers.isoemtric;
 	ft_bzero(vars->img->addr, HEIGHT * vars->img->line_length);
 	draw_map(vars->map, vars->img, vars->pers);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);

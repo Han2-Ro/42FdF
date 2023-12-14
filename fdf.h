@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 23:16:46 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 19:22:23 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ typedef struct s_perspective
 {
 	float	x_trans;
 	float	y_trans;
+	float	z_trans;
 	float	z_rot;
 	float	x_rot;
 	float	zoom;
+	int		isoemtric;
 }	t_perspective;
 
 typedef struct s_map
@@ -77,7 +79,7 @@ t_point	init_point(float x, float y, float z, int color);
 int		on_keypress(int keycode, t_vars *vars);
 t_map	*init_map(char *filename);
 void	draw_map(t_map *map, t_img *img, t_perspective pers);
-t_point	apply_pers(t_point point, t_perspective pers);
+t_point	*apply_pers(t_point *point, t_perspective pers);
 void	print_map(t_map map);
 void	free_strs(char **arr);
 int		count_w(char const *s, char c);

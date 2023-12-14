@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:25:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 22:27:02 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 19:35:21 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,34 @@ t_point	*scale(t_point *point, float factor)
 	return (point);
 }
 
-t_point	*translate(t_point *point, float x, float y)
+t_point	*translate(t_point *point, float x, float y, float z)
 {
 	point->x += x;
 	point->y += y;
+	point->z += z;
 	return (point);
 }
 
-t_point	apply_pers(t_point point, t_perspective pers)
+t_point	*conic_projection(t_point *point, float f, float d_cam)
 {
-	translate(&point, pers.x_trans, pers.y_trans);
-	scale(&point, pers.zoom);
-	rotate_z(&point, pers.z_rot);
-	rotate_x(&point, pers.x_rot);
+	float	z;
+
+	z = d_cam - point->z;
+	if (z <= 0)
+		return (NULL);
+	point->x = point->x * f / z;
+	point->y = point->y * f / z;
+	return (point);
+}
+
+t_point	*apply_pers(t_point *point, t_perspective pers)
+{
+	translate(point, pers.x_trans, pers.y_trans, pers.z_trans);
+	scale(point, pers.zoom);
+	rotate_z(point, pers.z_rot);
+	rotate_x(point, pers.x_rot);
+	if (!pers.isoemtric)
+		conic_projection(point, 200.0f, 300);
 	return (point);
 }
 
@@ -66,6 +81,8 @@ void	set_starting_pers(t_vars *vars)
 	vars->pers.zoom = min(HEIGHT, WIDTH) / 1.5 / max_map_dim;
 	vars->pers.y_trans = vars->map->y_size / -2;
 	vars->pers.x_trans = vars->map->x_size / -2;
+	vars->pers.z_trans = 0;
 	vars->pers.z_rot = -1 * ROT_ANGLE;
 	vars->pers.x_rot = 1 * ROT_ANGLE;
+	vars->pers.isoemtric = 1;
 }

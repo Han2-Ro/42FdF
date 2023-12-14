@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 22:07:38 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 18:35:14 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ void	draw_line(t_point start, t_point end, t_img *img)
 		line_across_y(start, end, d_x, d_y, img);
 }
 
-t_point	conv_cosy(t_point point)
+t_point	*conv_cosy(t_point *point)
 {
-	point.x += WIDTH / 2;
-	point.y += HEIGHT / 2;
-	point.z += HEIGHT / 2;
+	point->x += WIDTH / 2;
+	point->y += HEIGHT / 2;
+	point->z += HEIGHT / 2;
 	return (point);
 }
 
@@ -119,8 +119,8 @@ void	draw_map(t_map *map, t_img *img, t_perspective pers)
 {
 	int		x;
 	int		y;
-	t_point	p1;
-	t_point	p2;
+	t_point point[2];
+	t_point *ptr[2];
 
 	y = 0;
 	while (y < map->y_size)
@@ -128,19 +128,21 @@ void	draw_map(t_map *map, t_img *img, t_perspective pers)
 		x = 0;
 		while (x < map->x_size)
 		{
-			p1 = init_point(x, y, map->height[y][x], map->color[y][x]);
-			p1 = conv_cosy(apply_pers(p1, pers));
+			point[0] = init_point(x, y, map->height[y][x], map->color[y][x]);
+			ptr[0] = conv_cosy(apply_pers(point, pers));
 			if (x + 1 < map->x_size)
 			{
-				p2 = init_point(x + 1, y, map->height[y][x + 1], map->color[y][x + 1]);
-				p2 = conv_cosy(apply_pers(p2, pers));
-				draw_line(p1, p2, img);
+				point[1] = init_point(x + 1, y, map->height[y][x + 1], map->color[y][x + 1]);
+				ptr[1] = conv_cosy(apply_pers(point + 1, pers));
+				if (ptr[0] && ptr[1])
+					draw_line(*ptr[0], *ptr[1], img);
 			}
 			if (y + 1 < map->y_size)
 			{
-				p2 = init_point(x, y + 1, map->height[y + 1][x], map->color[y + 1][x]);
-				p2 = conv_cosy(apply_pers(p2, pers));
-				draw_line(p1, p2, img);
+				point[1] = init_point(x, y + 1, map->height[y + 1][x], map->color[y + 1][x]);
+				ptr[1] = conv_cosy(apply_pers(point + 1, pers));
+				if (ptr[1] && ptr[1])
+					draw_line(*ptr[0], *ptr[1], img);
 			}
 			x++;
 		}
