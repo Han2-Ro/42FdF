@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:25:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/14 19:35:21 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 20:08:04 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_point	*apply_pers(t_point *point, t_perspective pers)
 	rotate_z(point, pers.z_rot);
 	rotate_x(point, pers.x_rot);
 	if (!pers.isoemtric)
-		conic_projection(point, 200.0f, 300);
+		point = conic_projection(point, 200.0f, 300);
 	return (point);
 }
 

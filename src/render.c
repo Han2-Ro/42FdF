@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/14 18:35:14 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/14 20:15:57 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,12 @@ void	draw_line(t_point start, t_point end, t_img *img)
 
 t_point	*conv_cosy(t_point *point)
 {
-	point->x += WIDTH / 2;
-	point->y += HEIGHT / 2;
-	point->z += HEIGHT / 2;
+	if (point)
+	{
+		point->x += WIDTH / 2;
+		point->y += HEIGHT / 2;
+		point->z += HEIGHT / 2;
+	}
 	return (point);
 }
 
@@ -119,8 +122,8 @@ void	draw_map(t_map *map, t_img *img, t_perspective pers)
 {
 	int		x;
 	int		y;
-	t_point point[2];
-	t_point *ptr[2];
+	t_point	point[2];
+	t_point	*ptr[2];
 
 	y = 0;
 	while (y < map->y_size)
@@ -141,7 +144,7 @@ void	draw_map(t_map *map, t_img *img, t_perspective pers)
 			{
 				point[1] = init_point(x, y + 1, map->height[y + 1][x], map->color[y + 1][x]);
 				ptr[1] = conv_cosy(apply_pers(point + 1, pers));
-				if (ptr[1] && ptr[1])
+				if (ptr[0] != 0 && ptr[1] != 0)
 					draw_line(*ptr[0], *ptr[1], img);
 			}
 			x++;
