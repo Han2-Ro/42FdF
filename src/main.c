@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/15 14:58:23 by hannes           ###   ########.fr       */
+/*   Updated: 2023/12/15 18:28:01 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_vars	*init_vars(const char *filename, t_vars *vars)
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "Hello world!");
 	vars->map = init_map(filename);
+	if (!vars->map)
+		return (NULL);
 	set_starting_pers(vars);
 	vars->keys = init_keys(vars);
 	return (vars);
@@ -44,7 +46,5 @@ int	main(int argc, char **argv)
 	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
 	vars.img = &img;
-	draw_map(vars.map, &img, vars.pers);
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_loop(vars.mlx);
 }

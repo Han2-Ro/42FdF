@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/15 14:49:08 by hannes           ###   ########.fr       */
+/*   Updated: 2023/12/15 15:06:56 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ int	fill_row(char	*line, int size, t_map *map, int y)
 	char	*color;
 
 	cells = ft_split(line, ' ');
-	map->height[y] = malloc(size * sizeof(int));
-	map->color[y] = malloc(size * sizeof(int));
 	if (!map->height[y] || !map->color[y] || !cells)
 		return (0);
 	x = 0;
@@ -74,8 +72,7 @@ int	fill_row(char	*line, int size, t_map *map, int y)
 		map->color[y][x] = 0x00FFFFFF;
 		x++;
 	}
-	free_strs(cells);
-	return (1);
+	return (free_strs(cells), 1);
 }
 
 t_map	*parse_map(t_map *map, char	*str)
@@ -93,6 +90,8 @@ t_map	*parse_map(t_map *map, char	*str)
 	y = 0;
 	while (lines[y] && y < map->y_size)
 	{
+		map->height[y] = malloc(map->x_size * sizeof(int));
+		map->color[y] = malloc(map->x_size * sizeof(int));
 		fill_row(lines[y], map->x_size, map, y);
 		y++;
 	}
