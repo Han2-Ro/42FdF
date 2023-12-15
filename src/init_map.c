@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/14 17:49:28 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/15 14:49:08 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*str_attach(char **s1, char *s2)
 	return (res);
 }
 
-char	*read_file(char *filename)
+char	*read_file(const char *filename)
 {
 	char	*str;
 	char	buffer[BUFFER_SIZE];
@@ -100,7 +100,7 @@ t_map	*parse_map(t_map *map, char	*str)
 	return (map);
 }
 
-t_map	*init_map(char *filename)
+t_map	*init_map(const char *filename)
 {
 	t_map	*map;
 	char	*str;

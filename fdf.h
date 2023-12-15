@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/14 21:20:16 by hrother          ###   ########.fr       */
+/*   Updated: 2023/12/15 14:48:50 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define HEX "0123456789abcdef"
 # define ROT_ANGLE 0.392699082f
 # define BUFFER_SIZE 5000
+# define COLORED 1
 
 typedef struct t_img
 {
@@ -53,6 +54,7 @@ typedef struct s_perspective
 	float	z_rot;
 	float	x_rot;
 	float	zoom;
+	float	z_scale;
 	int		isoemtric;
 }	t_perspective;
 
@@ -86,7 +88,7 @@ void	put_pixel(t_img *data, int x, int y, int color);
 void	draw_line(t_point start, t_point end, t_img *data);
 t_point	init_point(float x, float y, float z, int color);
 int		on_keypress(int keycode, t_vars *vars);
-t_map	*init_map(char *filename);
+t_map	*init_map(const char *filename);
 void	draw_map(t_map *map, t_img *img, t_perspective pers);
 t_point	*apply_pers(t_point *point, t_perspective pers);
 void	print_map(t_map map);

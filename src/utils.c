@@ -37,7 +37,10 @@ t_point	init_point(float x, float y, float z, int color)
 	point.x = x;
 	point.y = y;
 	point.z = z;
-	point.color = color;
+	if (COLORED)
+		point.color = color;
+	else
+		point.color = 0xffffff;
 	return (point);
 }
 

@@ -53,7 +53,7 @@ t_point	*conic_projection(t_point *point, float f, float d_cam)
 	float	z;
 
 	z = d_cam - point->z;
-	if (z <= 5)
+	if (z <= 10)
 		return (NULL);
 	point->x = point->x * f / z;
 	point->y = point->y * f / z;
@@ -64,6 +64,7 @@ t_point	*apply_pers(t_point *point, t_perspective pers)
 {
 	translate(point, pers.x_trans, pers.y_trans, pers.z_trans);
 	scale(point, pers.zoom);
+	point->z = point->z * pers.z_scale;
 	rotate_z(point, pers.z_rot);
 	rotate_x(point, pers.x_rot);
 	if (!pers.isoemtric)
@@ -84,5 +85,6 @@ void	set_starting_pers(t_vars *vars)
 	vars->pers.z_trans = 0;
 	vars->pers.z_rot = -1 * ROT_ANGLE;
 	vars->pers.x_rot = 1 * ROT_ANGLE;
+	vars->pers.z_scale = 0.5f;
 	vars->pers.isoemtric = 1;
 }
