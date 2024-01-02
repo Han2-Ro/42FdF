@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/02 20:12:29 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/02 20:23:50 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,20 @@ void	draw_lines_from(t_map *map, t_img *img, int x, int y, t_pers pers)
 	ptr[0] = conv_cosy(apply_pers(point, pers));
 	if (x + 1 < map->x_size)
 	{
-		point[1] = init_point(x + 1, y, map->height[y][x + 1], map->color[y][x + 1]);
+		point[1] = init_point(
+				x + 1, y,
+				map->height[y][x + 1],
+				map->color[y][x + 1]);
 		ptr[1] = conv_cosy(apply_pers(point + 1, pers));
 		if (ptr[0] && ptr[1])
 			draw_line(*ptr[0], *ptr[1], img);
 	}
 	if (y + 1 < map->y_size)
 	{
-		point[1] = init_point(x, y + 1, map->height[y + 1][x], map->color[y + 1][x]);
+		point[1] = init_point(
+				x, y + 1,
+				map->height[y + 1][x],
+				map->color[y + 1][x]);
 		ptr[1] = conv_cosy(apply_pers(point + 1, pers));
 		if (ptr[0] != 0 && ptr[1] != 0)
 			draw_line(*ptr[0], *ptr[1], img);

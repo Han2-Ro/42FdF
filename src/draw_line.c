@@ -6,12 +6,11 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:57:55 by hannes            #+#    #+#             */
-/*   Updated: 2024/01/02 20:04:11 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/02 20:24:39 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
 
 int	blend_bytes(int a, int b, float f, int mask)
 {
@@ -52,8 +51,11 @@ void	line_across_x(t_point start, t_point end, int d_x, int d_y, t_img *data)
 		pixel.x = start.x + i * direction;
 		pixel.y = start.y + i * d_y / (d_x * direction);
 		(void)end;
-		pixel.color = blend(start.color, end.color, (i + .0f) / (d_x * direction));
-		put_pixel(data, (int)pixel.x, (int)pixel.y,  pixel.color);
+		pixel.color = blend(
+				start.color,
+				end.color,
+				(i + .0f) / (d_x * direction));
+		put_pixel(data, (int)pixel.x, (int)pixel.y, pixel.color);
 		i++;
 	}
 }
