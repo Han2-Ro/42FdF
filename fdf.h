@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/15 14:48:50 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/02 20:12:56 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_perspective
 	float	zoom;
 	float	z_scale;
 	int		isoemtric;
-}	t_perspective;
+}	t_pers;
 
 typedef struct s_map
 {
@@ -76,12 +76,12 @@ typedef struct s_key
 
 typedef struct s_vars
 {
-	void			*mlx;
-	void			*win;
-	t_img			*img;
-	t_map			*map;
-	t_key			*keys;
-	t_perspective	pers;
+	void	*mlx;
+	void	*win;
+	t_img	*img;
+	t_map	*map;
+	t_key	*keys;
+	t_pers	pers;
 }	t_vars;
 
 void	put_pixel(t_img *data, int x, int y, int color);
@@ -89,8 +89,8 @@ void	draw_line(t_point start, t_point end, t_img *data);
 t_point	init_point(float x, float y, float z, int color);
 int		on_keypress(int keycode, t_vars *vars);
 t_map	*init_map(const char *filename);
-void	draw_map(t_map *map, t_img *img, t_perspective pers);
-t_point	*apply_pers(t_point *point, t_perspective pers);
+void	draw_map(t_map *map, t_img *img, t_pers pers);
+t_point	*apply_pers(t_point *point, t_pers pers);
 void	print_map(t_map map);
 void	free_strs(char **arr);
 int		count_w(char const *s, char c);

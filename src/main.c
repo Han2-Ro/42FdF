@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/15 18:28:01 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/02 20:16:46 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ int	main(int argc, char **argv)
 	mlx_hook(vars.win, 3, KeyReleaseMask, on_keyreleased, &vars);
 	mlx_loop_hook(vars.mlx, on_loop, &vars);
 	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	img.addr = mlx_get_data_addr(img.img,
+			&img.bits_per_pixel,
+			&img.line_length,
+			&img.endian);
 	vars.img = &img;
 	mlx_loop(vars.mlx);
 }

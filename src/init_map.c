@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/15 15:06:56 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/02 20:08:16 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ t_map	*init_map(const char *filename)
 		|| filename[len - 1] != 'f')
 		return (ft_putendl_fd("File extension must be .fdf", 2), NULL);
 	str = read_file(filename);
-	//printf("%s\n\n", str);
 	if (!str)
 		return (NULL);
 	map = malloc(sizeof(t_map));

@@ -3,14 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:56:34 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/14 21:26:08 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/02 20:11:13 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+void	free_map(t_map *map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map->y_size)
+	{
+		free(map->height[i]);
+		i++;
+	}
+	free(map->height);
+	i = 0;
+	while (i < map->y_size)
+	{
+		free(map->color[i]);
+		i++;
+	}
+	free(map->color);
+	free(map);
+}
+
+int	close_win(t_vars *vars)
+{
+	free_map(vars->map);
+	mlx_destroy_image(vars->mlx, vars->img->img);
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_display(vars->mlx);
+	free(vars->mlx);
+	exit(0);
+	return (0);
+}
 
 int	on_keypressed(int keycode, t_vars *vars)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:38:04 by hrother           #+#    #+#             */
-/*   Updated: 2023/12/12 22:18:06 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/02 20:04:21 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,6 @@ int	min(int a, int b)
 		return (a);
 	else
 		return (b);
-}
-
-void	put_pixel(t_img *data, int x, int y, int color)
-{
-	char	*dst;
-
-	if (y >= HEIGHT || x >= WIDTH || y < 0 || x < 0)
-		return ;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
 }
 
 t_point	init_point(float x, float y, float z, int color)
@@ -76,39 +66,6 @@ int	count_w(char const *s, char c)
 			i++;
 	}
 	return (wcount);
-}
-
-void	print_map(t_map map)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < map.y_size)
-	{
-		x = 0;
-		while (x < map.x_size)
-		{
-			printf("%f ", map.height[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-	printf("\n");
-	y = 0;
-	while (y < map.y_size)
-	{
-		x = 0;
-		while (x < map.x_size)
-		{
-			printf("%x ", map.color[y][x]);
-			x++;
-		}
-		printf("\n");
-		y++;
-	}
-	printf("\n");
 }
 
 int	ft_atoi_base(char *str, const char *base)
