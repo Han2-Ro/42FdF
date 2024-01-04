@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/02 20:12:56 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/04 11:46:39 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,18 @@ typedef struct s_vars
 	t_key	*keys;
 	t_pers	pers;
 }	t_vars;
+
+typedef struct s_line_data
+{
+	int	dx;
+	int	dy;
+	int	step_x;
+	int	step_y;
+	int	swap;
+	int	x;
+	int	y;
+	int	error;
+}	t_line_data;
 
 void	put_pixel(t_img *data, int x, int y, int color);
 void	draw_line(t_point start, t_point end, t_img *data);

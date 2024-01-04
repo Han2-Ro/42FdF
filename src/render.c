@@ -6,21 +6,11 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/02 20:23:50 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/04 11:16:41 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
-
-void	put_pixel(t_img *data, int x, int y, int color)
-{
-	char	*dst;
-
-	if (y >= HEIGHT || x >= WIDTH || y < 0 || x < 0)
-		return ;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
 
 t_point	*conv_cosy(t_point *point)
 {
