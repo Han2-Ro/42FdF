@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:57:55 by hannes            #+#    #+#             */
-/*   Updated: 2024/01/04 12:10:40 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/04 12:16:05 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,14 @@ void	draw_line(t_point start, t_point end, t_img *img)
 {
 	t_line_data	data;
 	int			i;
+	int			color;
 
 	data = set_line_data(start, end);
 	i = 0;
 	while (i <= data.dx)
 	{
-		put_pixel(img, (int)data.x, (int)data.y, blend(start.color, end.color, (float)i / data.dx));
+		color = blend(start.color, end.color, (float)i / data.dx);
+		put_pixel(img, (int)data.x, (int)data.y, color);
 		if (data.error > 0)
 		{
 			if (data.swap)
@@ -90,7 +92,6 @@ void	draw_line(t_point start, t_point end, t_img *img)
 				data.y += data.step_y;
 			data.error -= 2 * data.dx;
 		}
-
 		if (data.swap)
 			data.y += data.step_y;
 		else
