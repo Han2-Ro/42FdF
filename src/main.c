@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/02 20:16:46 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/05 01:27:53 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_vars	*init_vars(const char *filename, t_vars *vars)
 {
 	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "Hello world!");
+	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "Fil de Fer");
 	vars->map = init_map(filename);
 	if (!vars->map)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:56:34 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/02 20:11:13 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/05 01:33:50 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	close_win(t_vars *vars)
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
 	free(vars->mlx);
+	free(vars->keys);
 	exit(0);
 	return (0);
 }
