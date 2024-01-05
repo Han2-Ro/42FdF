@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:56:34 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 01:33:50 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/05 14:14:51 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	on_loop(t_vars *vars)
 {
 	apply_all_keys(0.05, vars);
 	ft_bzero(vars->img->addr, HEIGHT * vars->img->line_length);
-	draw_map(vars->map, vars->img, vars->pers);
+	draw_map(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
 	return (0);
 }
