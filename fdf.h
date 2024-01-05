@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 18:31:25 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/05 23:54:53 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,7 @@ typedef struct s_line_data
 	int	error;
 }	t_line_data;
 
-void	put_pixel(t_img *data, int x, int y, int color);
-void	draw_line(t_point start, t_point end, t_img *data);
+void	draw_line(t_point start, t_point end, t_img data);
 t_point	init_point(float x, float y, float z, int color);
 int		on_keypress(int keycode, t_vars *vars);
 t_map	*init_map(const char *filename);

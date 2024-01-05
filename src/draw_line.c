@@ -6,19 +6,19 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 19:57:55 by hannes            #+#    #+#             */
-/*   Updated: 2024/01/04 12:16:05 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/05 23:54:47 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	put_pixel(t_img *data, int x, int y, int color)
+void	put_pixel(t_img data, int x, int y, int color)
 {
 	char	*dst;
 
 	if (y >= HEIGHT || x >= WIDTH || y < 0 || x < 0)
 		return ;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = data.addr + (y * data.line_length + x * (data.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -72,7 +72,7 @@ t_line_data	set_line_data(t_point start, t_point end)
 	return (data);
 }
 
-void	draw_line(t_point start, t_point end, t_img *img)
+void	draw_line(t_point start, t_point end, t_img img)
 {
 	t_line_data	data;
 	int			i;
