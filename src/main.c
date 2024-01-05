@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 01:27:53 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/05 15:20:45 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 t_vars	*init_vars(const char *filename, t_vars *vars)
 {
 	vars->mlx = mlx_init();
+	if (!vars->mlx)
+		return (NULL);
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "Fil de Fer");
 	vars->map = init_map(filename);
-	if (!vars->map)
+	if (!vars->map || !vars->win)
 		return (NULL);
 	set_starting_pers(vars);
 	vars->keys = init_keys(vars);
@@ -36,9 +38,10 @@ int	main(int argc, char **argv)
 		ft_printf("usage: %s <filename>\n", argv[0]);
 		return (1);
 	}
-	init_vars(argv[1], &vars);
-	if (!vars.map)
+	if (init_vars(argv[1], &vars) == NULL)
+	{
 		return (1);
+	}
 	mlx_hook(vars.win, 17, ButtonPressMask, close_win, &vars);
 	mlx_hook(vars.win, 2, KeyPressMask, on_keypressed, &vars);
 	mlx_hook(vars.win, 3, KeyReleaseMask, on_keyreleased, &vars);

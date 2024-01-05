@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/02 20:08:16 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/05 15:01:47 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	*read_file(const char *filename)
 		bytes_read = read(fd, buffer, BUFFER_SIZE - 1);
 		str_attach(&str, buffer);
 	}
+	close(fd);
 	return (str);
 }
 
@@ -84,7 +85,7 @@ t_map	*parse_map(t_map *map, char	*str)
 	lines = ft_split(str, '\n');
 	map->height = malloc(map->y_size * sizeof (int *));
 	map->color = malloc(map->y_size * sizeof (int *));
-	if (!lines || !map->height)
+	if (!lines || !map->height || !map->color)
 		return (NULL);
 	map->x_size = count_w(lines[0], ' ');
 	y = 0;

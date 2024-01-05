@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:28:39 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 14:05:23 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/05 14:56:28 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_key	*init_keys(t_vars *vars)
 
 	dif_trans = vars->map->x_size / 10;
 	keys = malloc(20 * sizeof(t_key));
+	if (!keys)
+		return (NULL);
 	keys[0] = init_key(XK_Up, ROT_ANGLE, &vars->pers.x_rot);
 	keys[1] = init_key(XK_Down, -ROT_ANGLE, &vars->pers.x_rot);
 	keys[2] = init_key(XK_Left, ROT_ANGLE, &vars->pers.z_rot);
