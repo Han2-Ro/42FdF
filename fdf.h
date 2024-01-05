@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 14:15:14 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/05 18:31:25 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
-	t_img	*img;
 	t_map	*map;
 	t_key	*keys;
+	t_img	img;
 	t_pers	pers;
 }	t_vars;
 

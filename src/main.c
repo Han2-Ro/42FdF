@@ -6,11 +6,28 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 15:20:45 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/05 18:38:37 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
+
+void	set_starting_pers(t_vars *vars)
+{
+	int	max_map_dim;
+
+	max_map_dim = vars->map->x_size;
+	if (vars->map->y_size > max_map_dim)
+		max_map_dim = vars->map->y_size;
+	vars->pers.zoom = min(HEIGHT, WIDTH) / 1.5 / max_map_dim;
+	vars->pers.y_trans = vars->map->y_size / -2;
+	vars->pers.x_trans = vars->map->x_size / -2;
+	vars->pers.z_trans = 0;
+	vars->pers.z_rot = -1 * ROT_ANGLE;
+	vars->pers.x_rot = 1 * ROT_ANGLE;
+	vars->pers.z_scale = 0.5f;
+	vars->pers.isoemtric = 1;
+}
 
 t_vars	*init_vars(const char *filename, t_vars *vars)
 {
@@ -23,16 +40,27 @@ t_vars	*init_vars(const char *filename, t_vars *vars)
 		return (NULL);
 	set_starting_pers(vars);
 	vars->keys = init_keys(vars);
+	vars->img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
+	vars->img.addr = mlx_get_data_addr(
+			vars->img.img,
+			&vars->img.bits_per_pixel,
+			&vars->img.line_length,
+			&vars->img.endian);
 	return (vars);
+}
+
+void	setup_hooks(t_vars *vars)
+{
+	mlx_hook(vars->win, 17, ButtonPressMask, close_win, vars);
+	mlx_hook(vars->win, 2, KeyPressMask, on_keypressed, vars);
+	mlx_hook(vars->win, 3, KeyReleaseMask, on_keyreleased, vars);
+	mlx_loop_hook(vars->mlx, on_loop, vars);
 }
 
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
-	t_img	img;
 
-	(void)argc;
-	(void)argv;
 	if (argc != 2)
 	{
 		ft_printf("usage: %s <filename>\n", argv[0]);
@@ -40,17 +68,9 @@ int	main(int argc, char **argv)
 	}
 	if (init_vars(argv[1], &vars) == NULL)
 	{
+		close_win(&vars);
 		return (1);
 	}
-	mlx_hook(vars.win, 17, ButtonPressMask, close_win, &vars);
-	mlx_hook(vars.win, 2, KeyPressMask, on_keypressed, &vars);
-	mlx_hook(vars.win, 3, KeyReleaseMask, on_keyreleased, &vars);
-	mlx_loop_hook(vars.mlx, on_loop, &vars);
-	img.img = mlx_new_image(vars.mlx, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img,
-			&img.bits_per_pixel,
-			&img.line_length,
-			&img.endian);
-	vars.img = &img;
+	setup_hooks(&vars);
 	mlx_loop(vars.mlx);
 }

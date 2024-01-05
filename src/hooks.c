@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:56:34 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 14:14:51 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/05 18:35:59 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void	free_map(t_map *map)
 
 int	close_win(t_vars *vars)
 {
-	free_map(vars->map);
-	mlx_destroy_image(vars->mlx, vars->img->img);
+	if (vars->map)
+		free_map(vars->map);
+	mlx_destroy_image(vars->mlx, vars->img.img);
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_display(vars->mlx);
 	free(vars->mlx);
@@ -68,8 +69,8 @@ int	on_keyreleased(int keycode, t_vars *vars)
 int	on_loop(t_vars *vars)
 {
 	apply_all_keys(0.05, vars);
-	ft_bzero(vars->img->addr, HEIGHT * vars->img->line_length);
+	ft_bzero(vars->img.addr, HEIGHT * vars->img.line_length);
 	draw_map(vars);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
 	return (0);
 }
