@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+         #
+#    By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 22:50:02 by hrother           #+#    #+#              #
-#    Updated: 2024/01/02 20:11:38 by hannes           ###   ########.fr        #
+#    Updated: 2024/01/05 13:53:26 by hrother          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,17 @@ OBJS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SRCS))
 NAME = fdf
 RM = rm -fr
 
-all: $(NAME) $(NAME_BONUS)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C ./libft
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L./libft -lft -L./minilibx-linux -lmlx_Linux -lXext -lX11 -lm -lz
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L./libft -lft -lmlx -lXext -lX11 -lm
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+bonus: $(NAME)
 
 clean:
 	make clean -C ./libft

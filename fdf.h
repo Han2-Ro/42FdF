@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/04 11:46:39 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/05 13:49:01 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "minilibx-linux/mlx.h"
+# include <mlx.h>
 # include <math.h>
 # include <fcntl.h>
 # include "libft/libft.h"
