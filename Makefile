@@ -6,12 +6,12 @@
 #    By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 22:50:02 by hrother           #+#    #+#              #
-#    Updated: 2024/01/05 13:53:26 by hrother          ###   ########.fr        #
+#    Updated: 2024/01/06 20:08:34 by hrother          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
 OBJ_DIR = objs
 SRCS = main.c render.c draw_line.c utils.c init_map.c transform.c key_handler.c hooks.c

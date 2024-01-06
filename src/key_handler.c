@@ -6,7 +6,7 @@
 /*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:28:39 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 18:15:37 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/06 20:06:46 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_key	*init_keys(t_data *data)
 
 	if (data->map == NULL)
 		return (NULL);
-	dif_trans = data->map->x_size / 10;
+	dif_trans = data->map->x_size / 10.0f;
 	keys = malloc(20 * sizeof(t_key));
 	if (!keys)
 		return (NULL);
