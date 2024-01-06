@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:25:17 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:03:19 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 14:37:10 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,6 @@ t_point	*translate(t_point *point, float x, float y, float z)
 	return (point);
 }
 
-t_point	*conic_projection(t_point *point, float f, float d_cam)
-{
-	float	z;
-
-	z = d_cam - point->z;
-	if (z <= 10)
-		return (NULL);
-	point->x = point->x * f / z;
-	point->y = point->y * f / z;
-	return (point);
-}
-
 t_point	*transform(t_point *point, t_pers pers)
 {
 	translate(point, pers.x_trans, pers.y_trans, pers.z_trans);
@@ -67,7 +55,5 @@ t_point	*transform(t_point *point, t_pers pers)
 	point->z = point->z * pers.z_scale;
 	rotate_z(point, pers.z_rot);
 	rotate_x(point, pers.x_rot);
-	if (!pers.isoemtric)
-		point = conic_projection(point, 600.0f, 300);
 	return (point);
 }
