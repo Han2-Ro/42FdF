@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:56:34 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 18:35:59 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/06 14:14:33 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,12 @@ int	close_win(t_vars *vars)
 {
 	if (vars->map)
 		free_map(vars->map);
-	mlx_destroy_image(vars->mlx, vars->img.img);
-	mlx_destroy_window(vars->mlx, vars->win);
-	mlx_destroy_display(vars->mlx);
+	if (vars->img.img)
+		mlx_destroy_image(vars->mlx, vars->img.img);
+	if (vars->win)
+		mlx_destroy_window(vars->mlx, vars->win);
+	if (vars->mlx)
+		mlx_destroy_display(vars->mlx);
 	free(vars->mlx);
 	free(vars->keys);
 	exit(0);
