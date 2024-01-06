@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:51:34 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 18:33:56 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	set_starting_pers(t_data *data)
 	data->pers.x_rot = 1 * ROT_ANGLE;
 	data->pers.z_scale = 0.5f;
 	data->pers.isoemtric = 1;
+	data->pers.focal_length = 400.0f;
 }
 
 t_data	*init_data(const char *filename, t_data *data)

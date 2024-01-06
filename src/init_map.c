@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 21:18:06 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:19:32 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 19:22:48 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*read_file(const char *filename)
 		return (ft_putendl_fd("Could not open file", 2), NULL);
 	str = malloc(sizeof(char));
 	if (!str)
-		return (NULL);
+		return (close(fd), NULL);
 	str[0] = '\0';
 	bytes_read = 1;
 	while (bytes_read > 0)
@@ -83,17 +83,21 @@ t_map	*parse_map(t_map *map, char	*str)
 
 	map->y_size = count_w(str, '\n');
 	lines = ft_split(str, '\n');
-	map->height = malloc(map->y_size * sizeof (int *));
-	map->color = malloc(map->y_size * sizeof (int *));
+	map->height = calloc(map->y_size, sizeof (int *));
+	map->color = calloc(map->y_size, sizeof (int *));
 	if (!lines || !map->height || !map->color)
-		return (NULL);
+		return (free_strs(lines), free(map->height),
+			free(map->color), free(map), NULL);
 	map->x_size = count_w(lines[0], ' ');
 	y = 0;
 	while (lines[y] && y < map->y_size)
 	{
 		map->height[y] = malloc(map->x_size * sizeof(int));
 		map->color[y] = malloc(map->x_size * sizeof(int));
-		fill_row(lines[y], map->x_size, map, y);
+		if (!map->height[y] || !map->color[y])
+			return (free_map(map), free_strs(lines), NULL);
+		if (!fill_row(lines[y], map->x_size, map, y))
+			return (free_map(map), free_strs(lines), NULL);
 		y++;
 	}
 	free_strs(lines);
@@ -117,7 +121,7 @@ t_map	*init_map(const char *filename)
 		return (NULL);
 	map = malloc(sizeof(t_map));
 	if (map)
-		parse_map(map, str);
+		map = parse_map(map, str);
 	free(str);
 	return (map);
 }

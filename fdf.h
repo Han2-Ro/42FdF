@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:56:44 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 19:03:50 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_perspective
 	float	zoom;
 	float	z_scale;
 	int		isoemtric;
+	float	focal_length;
 }	t_pers;
 
 typedef struct s_map
@@ -106,10 +107,11 @@ t_key	*init_keys(t_data *data);
 void	apply_all_keys(float deltatime, t_data *data);
 int		set_key(int keycode, int state, t_data *data);
 
+void	free_map(t_map *map);
+int		close_win(t_data *data);
 int		on_keypressed(int keycode, t_data *data);
 int		on_keyreleased(int keycode, t_data *data);
 int		on_loop(t_data *data);
-int		close_win(t_data *data);
 
 void	free_strs(char **arr);
 int		count_w(char const *s, char c);

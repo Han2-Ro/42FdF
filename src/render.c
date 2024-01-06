@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:34:33 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:51:38 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 18:15:24 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_point	*apply_pers(t_point *point, t_pers pers)
 {
 	transform(point, pers);
 	if (!pers.isoemtric)
-		point = conic_projection(point, 600.0f, 300);
+		point = conic_projection(point, pers.focal_length, 300);
 	if (point)
 	{
 		point->x += WIDTH / 2;

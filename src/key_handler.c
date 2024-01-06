@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
+/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:28:39 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:51:23 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 18:15:37 by hrother          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ t_key	*init_keys(t_data *data)
 	keys[7] = init_key(XK_d, dif_trans, &data->pers.x_trans);
 	keys[8] = init_key(XK_w, dif_trans, &data->pers.z_trans);
 	keys[9] = init_key(XK_s, -dif_trans, &data->pers.z_trans);
-	keys[10] = init_key(0, 0, 0);
+	keys[10] = init_key(XK_r, 50, &data->pers.focal_length);
+	keys[11] = init_key(XK_f, -50, &data->pers.focal_length);
+	keys[12] = init_key(0, 0, 0);
 	return (keys);
 }
 
