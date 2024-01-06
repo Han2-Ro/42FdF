@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:56:34 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:14:33 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 14:51:09 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,47 +33,47 @@ void	free_map(t_map *map)
 	free(map);
 }
 
-int	close_win(t_vars *vars)
+int	close_win(t_data *data)
 {
-	if (vars->map)
-		free_map(vars->map);
-	if (vars->img.img)
-		mlx_destroy_image(vars->mlx, vars->img.img);
-	if (vars->win)
-		mlx_destroy_window(vars->mlx, vars->win);
-	if (vars->mlx)
-		mlx_destroy_display(vars->mlx);
-	free(vars->mlx);
-	free(vars->keys);
+	if (data->map)
+		free_map(data->map);
+	if (data->img.img)
+		mlx_destroy_image(data->mlx, data->img.img);
+	if (data->win)
+		mlx_destroy_window(data->mlx, data->win);
+	if (data->mlx)
+		mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	free(data->keys);
 	exit(0);
 	return (0);
 }
 
-int	on_keypressed(int keycode, t_vars *vars)
+int	on_keypressed(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
-		return (close_win(vars));
+		return (close_win(data));
 	else if (keycode == XK_Shift_L)
-		vars->pers.zoom *= 1.1f;
+		data->pers.zoom *= 1.1f;
 	else if (keycode == XK_Control_L)
-		vars->pers.zoom /= 1.1f;
+		data->pers.zoom /= 1.1f;
 	else if (keycode == XK_space)
-		vars->pers.isoemtric = !vars->pers.isoemtric;
+		data->pers.isoemtric = !data->pers.isoemtric;
 	else
-		set_key(keycode, 1, vars);
+		set_key(keycode, 1, data);
 	return (0);
 }
 
-int	on_keyreleased(int keycode, t_vars *vars)
+int	on_keyreleased(int keycode, t_data *data)
 {
-	return (set_key(keycode, 0, vars));
+	return (set_key(keycode, 0, data));
 }
 
-int	on_loop(t_vars *vars)
+int	on_loop(t_data *data)
 {
-	apply_all_keys(0.05, vars);
-	ft_bzero(vars->img.addr, HEIGHT * vars->img.line_length);
-	draw_map(vars);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img.img, 0, 0);
+	apply_all_keys(0.05, data);
+	ft_bzero(data->img.addr, HEIGHT * data->img.line_length);
+	draw_map(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 	return (0);
 }

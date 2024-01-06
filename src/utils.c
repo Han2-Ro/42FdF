@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 16:38:04 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:30:03 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 14:51:41 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int	min(int a, int b)
 		return (b);
 }
 
-t_point	init_point(t_vars *vars, int x, int y)
+t_point	init_point(t_data *data, int x, int y)
 {
 	t_point	point;
 
 	point.x = x;
 	point.y = y;
-	point.z = vars->map->height[y][x];
+	point.z = data->map->height[y][x];
 	if (COLORED)
-		point.color = vars->map->color[y][x];
+		point.color = data->map->color[y][x];
 	else
 		point.color = 0xffffff;
 	return (point);

@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:30:56 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 14:56:44 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_key
 	float	*val;
 }	t_key;
 
-typedef struct s_vars
+typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
@@ -82,7 +82,7 @@ typedef struct s_vars
 	t_key	*keys;
 	t_img	img;
 	t_pers	pers;
-}	t_vars;
+}	t_data;
 
 typedef struct s_line_data
 {
@@ -96,24 +96,25 @@ typedef struct s_line_data
 	int	error;
 }	t_line_data;
 
-void	draw_line(t_point start, t_point end, t_img data);
-t_point	init_point(t_vars *vars, int x, int y);
-int		on_keypress(int keycode, t_vars *vars);
-t_map	*init_map(const char *filename);
-void	draw_map(t_vars *vars);
 t_point	*transform(t_point *point, t_pers pers);
-void	print_map(t_map map);
+void	draw_line(t_point start, t_point end, t_img img);
+void	draw_map(t_data *data);
+
+t_map	*init_map(const char *filename);
+
+t_key	*init_keys(t_data *data);
+void	apply_all_keys(float deltatime, t_data *data);
+int		set_key(int keycode, int state, t_data *data);
+
+int		on_keypressed(int keycode, t_data *data);
+int		on_keyreleased(int keycode, t_data *data);
+int		on_loop(t_data *data);
+int		close_win(t_data *data);
+
 void	free_strs(char **arr);
 int		count_w(char const *s, char c);
 int		ft_atoi_base(char *str, const char *base);
-int		close_win(t_vars *vars);
-void	set_starting_pers(t_vars *vars);
 int		min(int a, int b);
-int		on_keypressed(int keycode, t_vars *vars);
-int		on_keyreleased(int keycode, t_vars *vars);
-int		on_loop(t_vars *vars);
-t_key	*init_keys(t_vars *vars);
-void	apply_all_keys(float deltatime, t_vars *vars);
-int		set_key(int keycode, int state, t_vars *vars);
+t_point	init_point(t_data *data, int x, int y);
 
 #endif

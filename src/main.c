@@ -6,81 +6,81 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:42:17 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:21:46 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 14:51:34 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../fdf.h"
 
-void	set_starting_pers(t_vars *vars)
+void	set_starting_pers(t_data *data)
 {
 	int	max_map_dim;
 
-	if (vars->map == NULL)
+	if (data->map == NULL)
 		return ;
-	max_map_dim = vars->map->x_size;
-	if (vars->map->y_size > max_map_dim)
-		max_map_dim = vars->map->y_size;
-	vars->pers.zoom = min(HEIGHT, WIDTH) / 1.5 / max_map_dim;
-	vars->pers.y_trans = vars->map->y_size / -2;
-	vars->pers.x_trans = vars->map->x_size / -2;
-	vars->pers.z_trans = 0;
-	vars->pers.z_rot = -1 * ROT_ANGLE;
-	vars->pers.x_rot = 1 * ROT_ANGLE;
-	vars->pers.z_scale = 0.5f;
-	vars->pers.isoemtric = 1;
+	max_map_dim = data->map->x_size;
+	if (data->map->y_size > max_map_dim)
+		max_map_dim = data->map->y_size;
+	data->pers.zoom = min(HEIGHT, WIDTH) / 1.5 / max_map_dim;
+	data->pers.y_trans = data->map->y_size / -2;
+	data->pers.x_trans = data->map->x_size / -2;
+	data->pers.z_trans = 0;
+	data->pers.z_rot = -1 * ROT_ANGLE;
+	data->pers.x_rot = 1 * ROT_ANGLE;
+	data->pers.z_scale = 0.5f;
+	data->pers.isoemtric = 1;
 }
 
-t_vars	*init_vars(const char *filename, t_vars *vars)
+t_data	*init_data(const char *filename, t_data *data)
 {
-	vars->mlx = mlx_init();
-	if (vars->mlx)
-		vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "Fil de Fer");
+	data->mlx = mlx_init();
+	if (data->mlx)
+		data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Fil de Fer");
 	else
-		vars->win = NULL;
-	vars->map = init_map(filename);
-	set_starting_pers(vars);
-	vars->keys = init_keys(vars);
-	if (vars->mlx)
+		data->win = NULL;
+	data->map = init_map(filename);
+	set_starting_pers(data);
+	data->keys = init_keys(data);
+	if (data->mlx)
 	{
-		vars->img.img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
-		vars->img.addr = mlx_get_data_addr(
-				vars->img.img,
-				&vars->img.bits_per_pixel,
-				&vars->img.line_length,
-				&vars->img.endian);
+		data->img.img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+		data->img.addr = mlx_get_data_addr(
+				data->img.img,
+				&data->img.bits_per_pixel,
+				&data->img.line_length,
+				&data->img.endian);
 	}
 	else
-		vars->img.img = NULL;
-	if (vars->map == NULL || vars->mlx == NULL || vars->win == NULL
-		|| vars->img.img == NULL || vars->img.addr == NULL
-		|| vars->keys == NULL)
+		data->img.img = NULL;
+	if (data->map == NULL || data->mlx == NULL || data->win == NULL
+		|| data->img.img == NULL || data->img.addr == NULL
+		|| data->keys == NULL)
 		return (NULL);
-	return (vars);
+	return (data);
 }
 
-void	setup_hooks(t_vars *vars)
+void	setup_hooks(t_data *data)
 {
-	mlx_hook(vars->win, 17, ButtonPressMask, close_win, vars);
-	mlx_hook(vars->win, 2, KeyPressMask, on_keypressed, vars);
-	mlx_hook(vars->win, 3, KeyReleaseMask, on_keyreleased, vars);
-	mlx_loop_hook(vars->mlx, on_loop, vars);
+	mlx_hook(data->win, 17, ButtonPressMask, close_win, data);
+	mlx_hook(data->win, 2, KeyPressMask, on_keypressed, data);
+	mlx_hook(data->win, 3, KeyReleaseMask, on_keyreleased, data);
+	mlx_loop_hook(data->mlx, on_loop, data);
 }
 
 int	main(int argc, char **argv)
 {
-	t_vars	vars;
+	t_data	data;
 
 	if (argc != 2)
 	{
 		ft_printf("usage: %s <filename>\n", argv[0]);
 		return (1);
 	}
-	if (init_vars(argv[1], &vars) == NULL)
+	if (init_data(argv[1], &data) == NULL)
 	{
-		close_win(&vars);
+		close_win(&data);
 		return (1);
 	}
-	setup_hooks(&vars);
-	mlx_loop(vars.mlx);
+	setup_hooks(&data);
+	mlx_loop(data.mlx);
 }
