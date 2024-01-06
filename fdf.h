@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/06 14:07:07 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 14:30:56 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct s_line_data
 }	t_line_data;
 
 void	draw_line(t_point start, t_point end, t_img data);
-t_point	init_point(float x, float y, float z, int color);
+t_point	init_point(t_vars *vars, int x, int y);
 int		on_keypress(int keycode, t_vars *vars);
 t_map	*init_map(const char *filename);
 void	draw_map(t_vars *vars);
