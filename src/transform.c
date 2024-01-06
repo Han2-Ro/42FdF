@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 14:25:17 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 18:10:26 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/06 14:03:19 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_point	*conic_projection(t_point *point, float f, float d_cam)
 	return (point);
 }
 
-t_point	*apply_pers(t_point *point, t_pers pers)
+t_point	*transform(t_point *point, t_pers pers)
 {
 	translate(point, pers.x_trans, pers.y_trans, pers.z_trans);
 	scale(point, pers.zoom);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hrother <hrother@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:28:39 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 14:56:28 by hrother          ###   ########.fr       */
+/*   Updated: 2024/01/06 13:51:21 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_key	*init_keys(t_vars *vars)
 	t_key	*keys;
 	float	dif_trans;
 
+	if (vars->map == NULL)
+		return (NULL);
 	dif_trans = vars->map->x_size / 10;
 	keys = malloc(20 * sizeof(t_key));
 	if (!keys)

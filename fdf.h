@@ -6,7 +6,7 @@
 /*   By: hannes <hrother@student.42vienna.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:37:08 by hrother           #+#    #+#             */
-/*   Updated: 2024/01/05 23:54:53 by hannes           ###   ########.fr       */
+/*   Updated: 2024/01/06 14:07:07 by hannes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ t_point	init_point(float x, float y, float z, int color);
 int		on_keypress(int keycode, t_vars *vars);
 t_map	*init_map(const char *filename);
 void	draw_map(t_vars *vars);
-t_point	*apply_pers(t_point *point, t_pers pers);
+t_point	*transform(t_point *point, t_pers pers);
 void	print_map(t_map map);
 void	free_strs(char **arr);
 int		count_w(char const *s, char c);
